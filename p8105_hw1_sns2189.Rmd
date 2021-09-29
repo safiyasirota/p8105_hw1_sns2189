@@ -49,3 +49,40 @@ as.numeric(pull(problem1_df, vec_factor))
 When we use the `as.numeric` function on the logical variable, `vec_logical` gets converted to a binary variable where every value is either a 0 (representing FALSE) or a 1 (representing TRUE). When we use the `as.numeric` function on the character or factor variables, we get NA. 
 
 When we take the mean of a logical variable, each T/F value is automatically converted to 0 or 1, and we take the mean of this numeric vector. We cannot compute the means of character or factor variables because they have no numeric conversion.
+
+## Problem 2
+
+__Loading penguins dataset:__
+
+```{r}
+data("penguins", package = "palmerpenguins")
+```
+
+__Describing `penguins`:__
+
+* The variables in this dataset include:
+
+  * __`r names(penguins)[1]`__ (Adelie, Chinstrap, or Gentoo),
+  
+  * __`r names(penguins)[2]`__ (Bisoe, Dream, or Torgersen),
+  
+  * __some body measurements__ (i.e., `r names(penguins)[3]`, `r names(penguins)[4]`, `r names(penguins)[5]`, and `r names(penguins)[6]`), 
+  
+  * __`r names(penguins)[7]`__, 
+  
+  * and __`r names(penguins)[8]`__ (2007, 2008, or 2009).
+
+* The dataset has `r nrow(penguins)` observations and `r ncol(penguins)` variables, which are all listed above. 
+
+* The mean flipper length of penguins in this dataset is `r mean(pull(penguins, flipper_length_mm), na.rm = TRUE)` mm.
+
+__Making a scatterplot:__
+
+```{r, warning = FALSE, message = FALSE}
+ggplot(penguins, aes(x = bill_length_mm , y = flipper_length_mm, color = species)) + geom_point()
+```
+
+```{r, eval = FALSE, echo = FALSE}
+ggsave("hw1_scatterplot.png")
+```
+
